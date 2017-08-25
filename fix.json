@@ -1,0 +1,1 @@
+[{"model": "myapp.topic", "pk": 10, "fields": {"subject": "Distributed", "intro_course": true, "time": 1, "num_responses": 6, "avg_age": 20}}]

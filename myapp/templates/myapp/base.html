@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
+        <title>Course Listing APP - {% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div>
+            {% block myhdg %} {%  if user.is_authenticated %} <h3>   Welcome {{ user.first_name }}</h3>
+ {%  endif %}{% endblock %}
+                        {% block body_block %}
+
+
+            {% endblock %}
+        </div>
+        <hr >
+        <div>
+
+            <hr>
+            <hr>
+
+<nobr>
+{% block bottom %}
+                {% if user.is_authenticated %}
+                    <p><a href="{% url 'myapp:logout' %}">Logout</a></p>
+
+
+                     {%  block mycourse %}   <p><a href="{% url 'myapp:mycourses' %}">MyCourses</a> </p> {% endblock %}
+                    {% else %}
+                        <p><a href="{% url 'myapp:login' %}">Login</a></p>
+
+
+                {% endif %}
+            {% endblock %}
+            {% block register %}
+               <p> If you're a new user <a href="{% url 'myapp:register' %}">Register</a></p>{% endblock %}
+</nobr>
+            {%  block course %}
+                {% if user.is_authenticated %}
+                <p> <a href="{% url 'myapp:mycourses' %}">Courses I am registered in</a></p>
+            {% endif %}
+            {% endblock %}
+
+
+        </div>
+            <footer>
+                <li class="hbar1"><a href="/myapp/about/">Find out about this site</a></li>
+                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Click here to return to main page</a><br/></li>
+                <li class="hbar1"><a href = "{% url 'myapp:topics' %}">Topics</a><br/></li>
+            </footer>
+
+    </body>
+</html>
